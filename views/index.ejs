@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD App</title>
+</head>
+<body>
+    <h1>CRUD Operations</h1>
+
+    <!-- Form to Add a New User -->
+    <h2>Add New User</h2>
+    <form action="/users" method="POST">
+        <input type="text" name="name" placeholder="Enter Name" required>
+        <button type="submit">Add User</button>
+    </form>
+
+    <!-- Display Users List -->
+    <h2>Users</h2>
+    <ul>
+        <% users.forEach(user => { %>
+            <li>
+                <%= user.name %> 
+                <a href="/users/<%= user.id %>/edit">Edit</a> 
+                <form action="/users/<%= user.id %>" method="POST" style="display:inline;">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button type="submit">Delete</button>
+                </form>
+            </li>
+        <% }) %>
+    </ul>
+</body>
+</html>
